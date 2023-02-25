@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreSubjectFormRequest;
+use App\Http\Requests\API\StoreSubjectFormRequest;
 use App\Http\Resources\SubjectResource;
 use App\Models\Subject;
 use App\Traits\ApiResponser;

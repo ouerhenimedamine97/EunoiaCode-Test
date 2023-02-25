@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\API;
 
 use App\Traits\ApiResponser;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class StoreSubjectFormRequest extends FormRequest
 {
     use ApiResponser;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -34,7 +35,7 @@ class StoreSubjectFormRequest extends FormRequest
     {
         throw new HttpResponseException(
             $this->error(
-                "The given data is invalide.",
+                'The given data is invalide.',
                 $validator->messages()->toArray(),
                 422
             )
