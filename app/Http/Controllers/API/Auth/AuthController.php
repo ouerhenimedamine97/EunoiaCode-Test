@@ -48,7 +48,7 @@ class AuthController extends Controller
         return $this->success(
             'User Informations Retrieved Successfully.',
             [
-                'user' => request()->user(),
+                'user' => UserResource::make(request()->user()),
             ],
             200
         );

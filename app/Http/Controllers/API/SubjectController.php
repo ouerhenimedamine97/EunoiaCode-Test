@@ -3,47 +3,29 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\SubjectResource;
 use App\Models\Subject;
-use Illuminate\Http\Request;
+use App\Traits\ApiResponser;
+use Illuminate\Support\Facades\Auth;
 
 class SubjectController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    use ApiResponser;
+
     public function index()
     {
-        //
+        $userSubjects = Auth::user()->subjects()->get();
+
+        return $this->success(
+            'User subjects Retrieved Succeffully',
+            SubjectResource::collection($userSubjects)
+        );
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Create a new subject
      */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Subject $subject)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Subject $subject)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Subject $subject)
+    public function store()
     {
         //
     }

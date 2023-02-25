@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\Auth\AuthController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\SubjectController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,6 +23,6 @@ Route::prefix('auth')->group(function () {
     });
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->prefix('subjects')->group(function () {
+    Route::get('/', [SubjectController::class, 'index']);
 });
