@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreSubjectFormRequest;
 use App\Http\Resources\SubjectResource;
 use App\Models\Subject;
 use App\Traits\ApiResponser;
@@ -12,6 +13,9 @@ class SubjectController extends Controller
 {
     use ApiResponser;
 
+    /**
+     * List authenticated User Subjects
+     */
     public function index()
     {
         $userSubjects = Auth::user()->subjects()->get();
@@ -25,8 +29,14 @@ class SubjectController extends Controller
     /**
      * Create a new subject
      */
-    public function store()
+    public function store(StoreSubjectFormRequest $request)
     {
-        //
+        $subject = Subject::create($request->validated());
+
+        return $this->success(
+            'Subjects Created Succeffully',
+            new SubjectResource($subject),
+            201
+        );
     }
 }
